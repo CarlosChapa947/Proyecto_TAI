@@ -6,6 +6,7 @@ package Controlador;
 
 import Datos.Categorias_DAO;
 import Datos.Productos_DAO;
+import Modelo.CategoriasEntity;
 import Modelo.Categorias_Beans;
 import Modelo.Productos_Beans;
 
@@ -13,6 +14,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 @WebListener
@@ -30,7 +32,7 @@ public class TestListener implements ServletContextListener, HttpSessionListener
             String temp = "../../Img/Test2.png";
             cate_DAO = new Categorias_DAO();
             produ_DAO = new Productos_DAO();
-            LinkedList<Categorias_Beans> categorias = cate_DAO.getCategorias();
+            ArrayList<CategoriasEntity> categorias = cate_DAO.HibernateGetCategorias();
             LinkedList<Productos_Beans> productos = produ_DAO.getProductos();
             sce.getServletContext().setAttribute("appCategorias", categorias);
             sce.getServletContext().setAttribute("appProductos", productos);

@@ -3,6 +3,7 @@
 package Controlador;
 
 import Datos.Clientes_DAO;
+import Modelo.ClientesEntity;
 import Modelo.Clientes_Beans;
 import Modelo.Carrito_Cliente_Beans;
 import Datos.Carrito_Cliente_DAO;
@@ -49,6 +50,7 @@ public class LoginServlet extends HttpServlet {
         String user_path = request.getServletPath(), url;
         Clientes_DAO clientesDAO = null;
         Clientes_Beans cliente = null;
+        ClientesEntity clientesEntity = null;
         Carrito_Cliente_Beans carrito = null;
         Carrito_Cliente_DAO carritoDAO = null;
         switch (user_path){
@@ -83,17 +85,17 @@ public class LoginServlet extends HttpServlet {
                         clientesDAO.closeConn();
                         response.sendRedirect("index.jsp");
                     } else {
-                        cliente = new Clientes_Beans(
+                        clientesEntity = new ClientesEntity(
                                 request.getParameter("Nombres"),
                                 request.getParameter("APaterno"),
                                 request.getParameter("AMaterno"),
                                 request.getParameter("email"),
                                 request.getParameter("password")
                         );
-                        clientesDAO.RegisterNewCliente(cliente);
-                        cliente = clientesDAO.searchCliente(request.getParameter("email"));
+                        clientesDAO.HibernateRegisterNewCliente(clientesEntity);
+                        clientesEntity = clientesDAO.HibernatesearchCliente(request.getParameter("email"));
                         clientesDAO.closeConn();
-                        if (cliente != null) {
+                        if (clientesEntity != null) {
                             carrito = new Carrito_Cliente_Beans(cliente.getID_Clientes(), "C");
                             carritoDAO.insertCarrito(carrito);
                             carritoDAO.closeConn();

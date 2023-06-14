@@ -4,6 +4,9 @@ import Modelo.Carrito_Cliente_Beans;
 
 import java.sql.*;
 import java.util.LinkedList;
+import Modelo.CarritoClienteEntity;
+import org.hibernate.*;
+import org.hibernate.Session;
 
 public class Carrito_Cliente_DAO {
     Conexion conn;
@@ -16,6 +19,14 @@ public class Carrito_Cliente_DAO {
 
     public Carrito_Cliente_DAO(Connection conn){
         this.conn = new Conexion(conn);
+    }
+
+    public void HibernateInsertCarrito(CarritoClienteEntity carritoClienteEntity) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        session.save(carritoClienteEntity);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void insertCarrito(Carrito_Cliente_Beans orden) throws SQLException {

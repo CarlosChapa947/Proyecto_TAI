@@ -3,7 +3,13 @@ package Datos;
 import Modelo.Categorias_Beans;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import Modelo.CategoriasEntity;
+import Modelo.ClientesEntity;
+import org.hibernate.Session;
+
+import javax.persistence.criteria.CriteriaQuery;
 
 public class Categorias_DAO {
     Conexion conn;
@@ -64,6 +70,16 @@ public class Categorias_DAO {
             return cate;
         }
         return null;
+    }
+
+    public ArrayList<CategoriasEntity> HibernateGetCategorias() {
+        CategoriasEntity categoriaEntity = new CategoriasEntity();
+        ArrayList<CategoriasEntity> temp = new ArrayList<>();
+        Session session = HibernateUtil.getSession();
+        CriteriaQuery<CategoriasEntity> criteria = session.getCriteriaBuilder().createQuery(CategoriasEntity.class);
+        criteria.from(CategoriasEntity.class);
+        temp = (ArrayList<CategoriasEntity>) session.createQuery(criteria).getResultList();
+        return temp;
     }
 
     public LinkedList<Categorias_Beans> getCategorias() throws SQLException {

@@ -4,6 +4,9 @@ import Modelo.Clientes_Beans;
 
 import java.sql.*;
 import java.util.LinkedList;
+import Modelo.ClientesEntity;
+import org.hibernate.*;
+import org.hibernate.Session;
 
 public class Clientes_DAO {
     Conexion conn;
@@ -15,6 +18,14 @@ public class Clientes_DAO {
     }
     public Clientes_DAO (Connection conn){
         this.conn = new Conexion(conn);
+    }
+
+    public void HibernateRegisterNewCliente(ClientesEntity ClienteEntity) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        session.save(ClienteEntity);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void RegisterNewCliente(Clientes_Beans cliente) throws SQLException{
@@ -93,6 +104,18 @@ public class Clientes_DAO {
             return cliente;
         }
         return null;
+    }
+
+    public ClientesEntity HibernatesearchCliente(String email) throws SQLException {
+        ClientesEntity cliente;
+        Session session = HibernateUtil.getSession();
+        cliente = session.get(ClientesEntity.class, email);
+        session.close();
+        if(cliente != null) {
+            return cliente;
+        } else {
+            return null;
+        }
     }
 
     public Clientes_Beans searchCliente(String email) throws SQLException {

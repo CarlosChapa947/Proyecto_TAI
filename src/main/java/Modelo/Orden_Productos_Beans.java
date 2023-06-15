@@ -1,10 +1,29 @@
 package Modelo;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Orden_Cliente_Productos\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Orden_Productos_Beans implements Serializable {
-    private int ID_Orden, ID_Producto, Detalle_Del_Producto, Cantidad;
-    private double Precio_Final;
+    @Basic
+    @Id
+    @Column(name = "\"Orden_Cliente_ID_Orden_Cliente\"", nullable = false)
+    private int ID_Orden;
+    @Basic
+    @Id
+    @Column(name = "\"Productos_ID_Productos\"", nullable = false)
+    private int ID_Producto;
+    @Basic
+    @Column(name = "\"Detalle_Del_Producto\"", nullable = false)
+    private int Detalle_Del_Producto;
+    @Basic
+    @Column(name = "\"Cantidad_Orden\"", nullable = true)
+    private Integer Cantidad;
+    @Basic
+    @Column(name = "\"Precio_Final\"", nullable = true, precision = 0)
+    private Double Precio_Final;
+    private static final long serialVersionUID = 1L;
 
     public Orden_Productos_Beans(){
 
@@ -68,5 +87,32 @@ public class Orden_Productos_Beans implements Serializable {
         sb.append(", Precio_Final=").append(Precio_Final);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Orden_Productos_Beans that = (Orden_Productos_Beans) o;
+
+        if (ID_Orden != that.ID_Orden) return false;
+        if (ID_Producto != that.ID_Producto) return false;
+        if (Detalle_Del_Producto != that.Detalle_Del_Producto) return false;
+        if (Cantidad != null ? !Cantidad.equals(that.Cantidad) : that.Cantidad != null)
+            return false;
+        if (Precio_Final != null ? !Precio_Final.equals(that.Precio_Final) : that.Precio_Final != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Orden;
+        result = 31 * result + ID_Producto;
+        result = 31 * result + Detalle_Del_Producto;
+        result = 31 * result + (Cantidad != null ? Cantidad.hashCode() : 0);
+        result = 31 * result + (Cantidad != null ? Cantidad.hashCode() : 0);
+        return result;
     }
 }

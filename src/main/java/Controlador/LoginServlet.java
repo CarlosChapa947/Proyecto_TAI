@@ -96,7 +96,7 @@ public class LoginServlet extends HttpServlet {
                         clientesEntity = clientesDAO.HibernatesearchCliente(request.getParameter("email"));
                         clientesDAO.closeConn();
                         if (clientesEntity != null) {
-                            carrito = new Carrito_Cliente_Beans(cliente.getID_Clientes(), "C");
+                            carrito = new Carrito_Cliente_Beans(clientesEntity.getIdCliente(), "C");
                             carritoDAO.insertCarrito(carrito);
                             carritoDAO.closeConn();
                         }

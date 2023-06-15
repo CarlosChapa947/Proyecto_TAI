@@ -1,10 +1,37 @@
 package Modelo;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "\"Clientes\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Clientes_Beans implements Serializable {
-    private int ID_Clientes, Direccion_Primaria;
-    private String Nombre, Apellido_P, Apellido_M, Telefono, Email, Clave;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "\"ID_Cliente\"", nullable = false)
+    private int ID_Clientes;
+    @Basic
+    @Column(name = "\"Nombre\"", nullable = true, length = -1)
+    private String Nombre;
+    @Basic
+    @Column(name = "\"Apellido_M\"", nullable = true, length = -1)
+    private String Apellido_M;
+    @Basic
+    @Column(name = "\"Apellido_P\"", nullable = true, length = -1)
+    private String Apellido_P;
+    @Basic
+    @Column(name = "\"Email\"", nullable = true, length = -1)
+    private String Email;
+    @Basic
+    @Column(name = "\"Clave\"", nullable = true, length = -1)
+    private String Clave;
+    @Basic
+    @Column(name = "\"Telefono\"", nullable = true, length = -1)
+    private String Telefono;
+    @Basic
+    @Column(name = "\"Direccion_Primaria\"", nullable = true)
+    private Integer Direccion_Primaria;
+
     public Clientes_Beans(){
 
     }
@@ -116,4 +143,38 @@ public class Clientes_Beans implements Serializable {
                 ", Email='" + Email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Clientes_Beans that = (Clientes_Beans) o;
+
+        if (ID_Clientes != that.ID_Clientes) return false;
+        if (Nombre != null ? !Nombre.equals(that.Nombre) : that.Nombre != null) return false;
+        if (Apellido_M != null ? !Apellido_M.equals(that.Apellido_M) : that.Apellido_M != null) return false;
+        if (Apellido_P != null ? !Apellido_P.equals(that.Apellido_P) : that.Apellido_P != null) return false;
+        if (Email != null ? !Email.equals(that.Email) : that.Email != null) return false;
+        if (Clave != null ? !Clave.equals(that.Clave) : that.Clave != null) return false;
+        if (Telefono != null ? !Telefono.equals(that.Telefono) : that.Telefono != null) return false;
+        if (Direccion_Primaria != null ? !Direccion_Primaria.equals(that.Direccion_Primaria) : that.Direccion_Primaria != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Clientes;
+        result = 31 * result + (Nombre != null ? Nombre.hashCode() : 0);
+        result = 31 * result + (Apellido_M != null ? Apellido_M.hashCode() : 0);
+        result = 31 * result + (Apellido_P != null ? Apellido_P.hashCode() : 0);
+        result = 31 * result + (Email != null ? Email.hashCode() : 0);
+        result = 31 * result + (Clave != null ? Clave.hashCode() : 0);
+        result = 31 * result + (Telefono != null ? Telefono.hashCode() : 0);
+        result = 31 * result + (Direccion_Primaria != null ? Direccion_Primaria.hashCode() : 0);
+        return result;
+    }
+
 }

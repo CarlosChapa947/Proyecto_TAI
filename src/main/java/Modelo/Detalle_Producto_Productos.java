@@ -5,9 +5,23 @@ import Datos.Detalle_Producto_ProductosDAO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Detalle_Producto_Productos\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Detalle_Producto_Productos implements Serializable {
-    private int FK_Detalle_Producto, FK_Producto, Cantidad;
+    @Basic
+    @Id
+    @Column(name = "\"FK_Detalle_Producto\"", nullable = false)
+    private int FK_Detalle_Producto;
+    @Basic
+    @Id
+    @Column(name = "\"FK_Producto\"", nullable = false)
+    private int FK_Producto;
+    @Basic
+    @Column(name = "\"Cantidad\"", nullable = true)
+    private Integer Cantidad;
+    private static final long serialVersionUID = 1L;
 
     public Detalle_Producto_Productos (){
 
@@ -63,5 +77,27 @@ public class Detalle_Producto_Productos implements Serializable {
         sb.append(", Cantidad=").append(Cantidad);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Detalle_Producto_Productos that = (Detalle_Producto_Productos) o;
+
+        if (FK_Detalle_Producto != that.FK_Detalle_Producto) return false;
+        if (FK_Producto != that.FK_Producto) return false;
+        if (Cantidad != null ? !Cantidad.equals(that.Cantidad) : that.Cantidad != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = FK_Detalle_Producto;
+        result = 31 * result + FK_Producto;
+        result = 31 * result + (Cantidad != null ? Cantidad.hashCode() : 0);
+        return result;
     }
 }

@@ -1,0 +1,253 @@
+/*
+Diseño inspirado por el proyecto de E-learning de AffableBean proveido por Netbeans
+Algo de el credito va para ellos, por que dieron idea al esqueleto principal, desde el cual he ido modificando.
+*/
+body {
+    font-family: Arial, Helvetica, SansSerif, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    margin: 10px auto;
+}
+
+#Main {
+    height: 100vh;
+    width: 100vw;
+    background: cornsilk;
+}
+
+#Header {
+    height: 25vh;
+    width: 100vw;
+    background: #aaaaaa;
+}
+
+#Footer {
+    height: 6vh;
+    width: 100vw;
+    clear: left;
+    background: #aaaaaa;
+}
+
+#IndexLeftColumn {
+    height: 75vh;
+    width: 19vw;
+    float: left;
+    background: #aaaaaa;
+}
+
+#WelcomeDiv {
+    height: 75vh;
+    width: 20vw;
+}
+
+#IndexRightColumn {
+    height: 75vh;
+    width: 81vw;
+    float: left;
+    background: cornsilk;
+    overflow: auto;
+}
+
+.CategoryImg {
+    height: 87%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat ;
+    background-clip: border-box;
+    background-size: cover;
+    position: relative;
+}
+
+#Logo {
+    height: 60%;
+    background-position: center;
+    background-repeat: repeat ;
+    background-clip: content-box;
+    background-size: cover;
+    position: relative;
+}
+
+#LeftBanner {
+    height: 75vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-size: cover;
+    position: relative;
+}
+
+.ImgProduct {
+    height: 75px;
+    width: 100px;
+    float: right;
+    margin-right: 20px;
+}
+
+#Logo_Text {
+    float: left;
+    margin: 20px 0 0 70px;
+    font-family: 'American Typewriter', "Courier New", Monospaced, sans-serif;
+    font-size: 50px;
+    color: #333;
+}
+
+#WidgetBar {
+    height: 10vh;
+    width: 100vw;
+    float: left;
+    background: #cccccc;
+}
+
+*hr {
+    border: 0;
+    background-color: #333333;
+    height: 1px;
+    margin: 0 25px;
+    width: 300px;
+}
+
+.HeaderWidget {
+    width: 194px;
+    margin: 20px 2px;
+    font-size: small;
+    float: left;
+    line-height: 25px;
+    background: #aaaaaa;
+}
+
+.CategoryBox {
+    height: 30vh;
+    width: 24vw;
+    margin: 10px 10px 10px;
+    float: inherit;
+    background: #cccccc;
+}
+
+.categoryLabelText {
+    position: absolute;
+    line-height: 150%;
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.categoryImage {
+    padding: 1px;
+    border:solid 1px #555;
+}
+
+#categoryLeftColumn {
+    height: 80vh;
+    width: 15vw;
+    float: left;
+    padding-left: 15px;
+    background-color: #cccccc;
+    overflow: auto;
+}
+
+#categoryRightColumn {
+    margin-top: 0px;
+    width: 80vw;
+    float: left;
+    overflow: auto;
+    background-color: cornsilk;
+}
+
+.categoryButton {
+    margin: 15px 22px;
+    padding: 10%;
+    display: block;
+    background-color: #d3ede8;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+#selectedCategory {
+    height: 5vh;
+    width: 10vw;
+    background-color: #b2d2d2;
+    margin-left: 10px;
+    overflow: clip;
+}
+
+#categoryTitle {
+    margin-top: -40px;
+    margin-left: 25px;
+    font-size: x-large;
+    position: absolute;
+    background-color: #f5eabe;
+    padding: 7px;
+    border-radius: 4px;
+}
+
+.categoryText {
+    line-height: 2vw;
+    font-size: 2vw;
+    text-overflow: inherit;
+}
+
+#productTable {
+    width: 80vw;
+    position: relative;
+    z-index: 1;
+}
+
+#productTable tr { height: 9vh }
+
+#productTable td { width: 14vw }
+
+.lightCorn { background-color: #f5eabe }
+
+.grey { background-color: #f5eabe }
+
+#checkoutTable {
+    width: 40vw;
+    padding: 10px;
+    background-color: #f5eabe;
+    float: left;
+    border-radius:4px;
+}
+
+#checkoutTable td {
+    vertical-align: top;
+    text-align: right;
+    margin: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.inputField { width: 10vw}
+
+
+#checkoutForm {
+    height: 0vh;
+    width: 40vw;
+}
+
+#priceBox {
+    padding: 10px;
+    border: 1px solid #c3e3e0;
+    background-color: #c3e3e0;
+    border-radius: 4px;
+    height: 40vh;
+    width: 40vw;
+}
+
+#priceBox td {
+    text-align: center;
+    padding: 5px;
+}
+
+.checkoutPriceColumn {
+    width: 80px;
+    font-weight: bold;
+}
+
+.total { border-top: 1px solid #444 }
+
+#singleColumn {
+    margin: 0px 0px;
+    text-align: left;
+    background-color: cornsilk;
+}

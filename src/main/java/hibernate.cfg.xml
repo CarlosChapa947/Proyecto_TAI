@@ -9,15 +9,26 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">0000</property>
         <mapping class="Modelo.CarritoClienteEntity"/>
+        <mapping class="Modelo.Carrito_Cliente_Beans"></mapping>
         <mapping class="Modelo.CarritoClienteProductosEntity"/>
+        <mapping class="Modelo.Carrito_Cliente_Productos_Beans"></mapping>
         <mapping class="Modelo.CategoriasEntity"/>
+        <mapping class="Modelo.Categorias_Beans"></mapping>
         <mapping class="Modelo.ClientesEntity"/>
+        <mapping class="Modelo.Clientes_Beans"></mapping>
         <mapping class="Modelo.DetalleProductoEntity"/>
+        <mapping class="Modelo.Detalle_Producto_Beans"></mapping>
         <mapping class="Modelo.DetalleProductoProductosEntity"/>
+        <mapping class="Modelo.Detalle_Producto_Productos"></mapping>
         <mapping class="Modelo.DireccionesEntity"/>
+        <mapping class="Modelo.Direcciones_Beans"></mapping>
         <mapping class="Modelo.FormaPagoEntity"/>
+        <mapping class="Modelo.Forma_Pago_Beans"></mapping>
         <mapping class="Modelo.OrdenClienteEntity"/>
+        <mapping class="Modelo.Orden_Cliente_Beans"></mapping>
         <mapping class="Modelo.OrdenClienteProductosEntity"/>
+        <mapping class="Modelo.Productos_Beans"></mapping>
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

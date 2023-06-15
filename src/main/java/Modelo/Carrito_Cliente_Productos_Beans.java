@@ -1,10 +1,29 @@
 package Modelo;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "\"Carrito_Cliente_Productos\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Carrito_Cliente_Productos_Beans implements Serializable {
-    private int ID_Producto, ID_Carrito_Cliente, Detalle_Del_Producto,  Cantidad;
-    private Double Precio_Carrito;
+    @Basic
+    @Id
+    @Column(name = "\"Carrito_Cliente_ID_Carrito\"", nullable = false)
+    private int ID_Carrito_Cliente;
+    @Basic
+    @Id
+    @Column(name = "\"Productos_ID_Productos\"", nullable = false)
+    private int ID_Producto;
+    @Basic
+    @Column(name = "\"Detalle_Del_Producto\"", nullable = false)
+    private int Detalle_Del_Producto;
+    @Basic
+    @Column(name = "\"Cantidad\"", nullable = false)
+    private int Cantidad;
+    @Basic
+    @Column(name = "\"Precio_Carrito\"", nullable = false)
+    private double Precio_Carrito;
+    private static final long serialVersionUID = 1L;
     public Carrito_Cliente_Productos_Beans(){
 
     }
@@ -71,5 +90,31 @@ public class Carrito_Cliente_Productos_Beans implements Serializable {
                 ", Cantidad=" + Cantidad +
                 ", Precio_Carrito=" + Precio_Carrito +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Carrito_Cliente_Productos_Beans that = (Carrito_Cliente_Productos_Beans) o;
+
+        if (ID_Carrito_Cliente != that.ID_Carrito_Cliente) return false;
+        if (ID_Producto != that.ID_Producto) return false;
+        if (Detalle_Del_Producto != that.Detalle_Del_Producto) return false;
+        if (Cantidad != that.Cantidad) return false;
+        if (Precio_Carrito != that.Precio_Carrito) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Carrito_Cliente;
+        result = 31 * result + ID_Producto;
+        result = 31 * result + Detalle_Del_Producto;
+        result = 31 * result + Cantidad;
+        result = 31 * result +(int) Precio_Carrito;
+        return result;
     }
 }

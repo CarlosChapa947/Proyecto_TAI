@@ -1,12 +1,20 @@
 package Datos;
 
+import Modelo.CategoriasEntity;
 import Modelo.Clientes_Beans;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import Modelo.ClientesEntity;
 import org.hibernate.*;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 
 public class Clientes_DAO {
     Conexion conn;
@@ -107,9 +115,14 @@ public class Clientes_DAO {
     }
 
     public ClientesEntity HibernatesearchCliente(String email) throws SQLException {
-        ClientesEntity cliente;
+        ClientesEntity cliente=null;
         Session session = HibernateUtil.getSession();
-        cliente = session.get(ClientesEntity.class, email);
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<ClientesEntity> criteria = criteriaBuilder.createQuery(ClientesEntity.class);
+        Root<ClientesEntity> root = criteria.from(ClientesEntity.class);
+        Expression<Boolean> condicion = criteriaBuilder.equal(root.get("email"), email);
+        criteria.where(condicion);
+        cliente = session.createQuery(criteria).getSingleResult();
         session.close();
         if(cliente != null) {
             return cliente;

@@ -1,10 +1,25 @@
 package Modelo;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Direcciones\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Direcciones_Beans implements Serializable {
-    private int ID_Direcciones, Direccion_C;
-    private String Codigo_Postal, Direccion;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "\"ID_Direcciones\"", nullable = false)
+    private int ID_Direcciones;
+    @Basic
+    @Column(name = "\"FK_Direccion_C\"", nullable = true)
+    private Integer Direccion_C;
+    @Basic
+    @Column(name = "\"Codigo_Postal\"", nullable = false, length = -1)
+    private String Codigo_Postal;
+    @Basic
+    @Column(name = "\"Direccion\"", nullable = false, length = -1)
+    private String Direccion;
+
     public Direcciones_Beans(){
 
     }
@@ -61,5 +76,29 @@ public class Direcciones_Beans implements Serializable {
                 ", Codigo_Postal='" + Codigo_Postal + '\'' +
                 ", Direccion='" + Direccion + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Direcciones_Beans that = (Direcciones_Beans) o;
+
+        if (ID_Direcciones != that.ID_Direcciones) return false;
+        if (Direccion_C != null ? !Direccion_C.equals(that.Direccion_C) : that.Direccion_C != null) return false;
+        if (Codigo_Postal != null ? !Codigo_Postal.equals(that.Codigo_Postal) : that.Codigo_Postal != null) return false;
+        if (Direccion != null ? !Direccion.equals(that.Direccion) : that.Direccion != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Direcciones;
+        result = 31 * result + (Direccion_C != null ? Direccion_C.hashCode() : 0);
+        result = 31 * result + (Codigo_Postal != null ? Codigo_Postal.hashCode() : 0);
+        result = 31 * result + (Direccion != null ? Direccion.hashCode() : 0);
+        return result;
     }
 }

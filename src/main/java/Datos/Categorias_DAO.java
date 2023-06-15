@@ -72,13 +72,13 @@ public class Categorias_DAO {
         return null;
     }
 
-    public ArrayList<CategoriasEntity> HibernateGetCategorias() {
-        CategoriasEntity categoriaEntity = new CategoriasEntity();
-        ArrayList<CategoriasEntity> temp = new ArrayList<>();
+    public ArrayList<Categorias_Beans> HibernateGetCategorias() {
+        Categorias_Beans categoriaEntity = new Categorias_Beans();
+        ArrayList<Categorias_Beans> temp = new ArrayList<>();
         Session session = HibernateUtil.getSession();
-        CriteriaQuery<CategoriasEntity> criteria = session.getCriteriaBuilder().createQuery(CategoriasEntity.class);
-        criteria.from(CategoriasEntity.class);
-        temp = (ArrayList<CategoriasEntity>) session.createQuery(criteria).getResultList();
+        CriteriaQuery<Categorias_Beans> criteria = session.getCriteriaBuilder().createQuery(Categorias_Beans.class);
+        criteria.from(Categorias_Beans.class);
+        temp = (ArrayList<Categorias_Beans>) session.createQuery(criteria).getResultList();
         return temp;
     }
 

@@ -1,11 +1,21 @@
 package Modelo;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "\"Categorias\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Categorias_Beans implements Serializable {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "\"ID_Categorias\"", nullable = false)
     private int ID_Categorias;
-    private String Nombre, imageName;
-
+    @Basic
+    @Column(name = "\"Nombre\"", nullable = true, length = -1)
+    private String Nombre;
+    @Basic
+    @Column(name = "\"Image_Name\"", nullable = true, length = -1)
+    private String imageName;
     public Categorias_Beans(){
 
     }
@@ -53,4 +63,27 @@ public class Categorias_Beans implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Categorias_Beans that = (Categorias_Beans) o;
+
+        if (ID_Categorias != that.ID_Categorias) return false;
+        if (Nombre != null ? !Nombre.equals(that.Nombre) : that.Nombre != null) return false;
+        if (imageName != null ? !imageName.equals(that.imageName) : that.imageName != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Categorias;
+        result = 31 * result + (Nombre != null ? Nombre.hashCode() : 0);
+        result = 31 * result + (imageName != null ? imageName.hashCode() : 0);
+        return result;
+    }
+
 }

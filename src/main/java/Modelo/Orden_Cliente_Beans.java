@@ -2,11 +2,37 @@ package Modelo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "\"Orden_Cliente\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Orden_Cliente_Beans implements Serializable {
-    private int ID_Orden_Cliente, FK_Cliente_O, Num_Confirmacion, FK_Direccion, Detalle_Pago;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "\"ID_Orden_Cliente\"", nullable = false)
+    private int ID_Orden_Cliente;
+    @Basic
+    @Column(name = "\"Total\"", nullable = false, precision = 0)
     private double Total;
-    private String Status;
+    @Basic
+    @Column(name = "\"Fecha_Ultima_A\"", nullable = true)
     private Timestamp Fecha;
+    @Basic
+    @Column(name = "\"Num_Confirmacion\"", nullable = false)
+    private int Num_Confirmacion;
+    @Basic
+    @Column(name = "\"Status\"", nullable = true, length = -1)
+    private String Status;
+    @Basic
+    @Column(name = "\"FK_Cliente_OC\"", nullable = true)
+    private Integer FK_Cliente_O;
+    @Basic
+    @Column(name = "\"Direccion\"", nullable = true)
+    private Integer FK_Direccion;
+    @Basic
+    @Column(name = "\"Detalles_Pago\"", nullable = true)
+    private Integer Detalle_Pago;
+
     public Orden_Cliente_Beans(){
 
     }
@@ -111,5 +137,40 @@ public class Orden_Cliente_Beans implements Serializable {
         sb.append(", Fecha=").append(Fecha);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Orden_Cliente_Beans that = (Orden_Cliente_Beans) o;
+
+        if (ID_Orden_Cliente != that.ID_Orden_Cliente) return false;
+        if (Double.compare(that.Total, Total) != 0) return false;
+        if (Num_Confirmacion != that.Num_Confirmacion) return false;
+        if (Fecha != null ? !Fecha.equals(that.Fecha) : that.Fecha != null) return false;
+        if (Status != null ? !Status.equals(that.Status) : that.Status != null) return false;
+        if (FK_Cliente_O != null ? !FK_Cliente_O.equals(that.FK_Cliente_O) : that.FK_Cliente_O != null) return false;
+        if (FK_Direccion != null ? !FK_Direccion.equals(that.FK_Direccion) : that.FK_Direccion != null) return false;
+        if (Detalle_Pago != null ? !Detalle_Pago.equals(that.Detalle_Pago) : that.Detalle_Pago != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = ID_Orden_Cliente;
+        temp = Double.doubleToLongBits(Total);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (Fecha != null ? Fecha.hashCode() : 0);
+        result = 31 * result + Num_Confirmacion;
+        result = 31 * result + (Status != null ? Status.hashCode() : 0);
+        result = 31 * result + (FK_Cliente_O != null ? FK_Cliente_O.hashCode() : 0);
+        result = 31 * result + (FK_Direccion != null ? FK_Direccion.hashCode() : 0);
+        result = 31 * result + (Detalle_Pago != null ? Detalle_Pago.hashCode() : 0);
+        return result;
     }
 }

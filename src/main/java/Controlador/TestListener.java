@@ -32,7 +32,7 @@ public class TestListener implements ServletContextListener, HttpSessionListener
             String temp = "../../Img/Test2.png";
             cate_DAO = new Categorias_DAO();
             produ_DAO = new Productos_DAO();
-            ArrayList<CategoriasEntity> categorias = cate_DAO.HibernateGetCategorias();
+            ArrayList<Categorias_Beans> categorias = cate_DAO.HibernateGetCategorias();
             LinkedList<Productos_Beans> productos = produ_DAO.getProductos();
             sce.getServletContext().setAttribute("appCategorias", categorias);
             sce.getServletContext().setAttribute("appProductos", productos);

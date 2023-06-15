@@ -36,7 +36,7 @@ public class ControllerServlet extends HttpServlet {
                     Productos_DAO produ_DAO;
                     cate_DAO = new Categorias_DAO();
                     produ_DAO = new Productos_DAO();
-                    LinkedList<Categorias_Beans> categorias = (LinkedList<Categorias_Beans>) getServletContext().getAttribute("appCategorias");
+                    ArrayList<Categorias_Beans> categorias = (ArrayList<Categorias_Beans>) getServletContext().getAttribute("appCategorias");
                     //LinkedList<Categorias_Beans> categorias = cate_DAO.getCategorias();
                     //request.setAttribute("Test", categorias);
                     request.setAttribute("Test2", produ_DAO.getProductosInCategoria(querystring));

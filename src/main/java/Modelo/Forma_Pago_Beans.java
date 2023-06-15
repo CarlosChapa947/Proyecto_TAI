@@ -2,11 +2,32 @@ package Modelo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name = "\"Forma_Pago\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Forma_Pago_Beans implements Serializable {
-    private int ID_Forma_Pago, FK_Cliente_FP;
-    private String Tipo_Pago, Proveedor, Num_Cuenta;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "\"ID_Forma_Pago\"", nullable = false)
+    private int ID_Forma_Pago;
+    @Basic
+    @Column(name = "\"FK_Cliente_FP\"", nullable = true)
+    private Integer FK_Cliente_FP;
+    @Basic
+    @Column(name = "\"Tipo_Pago\"", nullable = false, length = -1)
+    private String Tipo_Pago;
+    @Basic
+    @Column(name = "\"Proveedor\"", nullable = false, length = -1)
+    private String Proveedor;
+    @Basic
+    @Column(name = "\"Num_Cuenta\"", nullable = false, length = -1)
+    private String Num_Cuenta;
+    @Basic
+    @Column(name = "\"Expiracion\"", nullable = false)
     private Date Expiracion;
+
 
     public Forma_Pago_Beans(){
 
@@ -86,5 +107,32 @@ public class Forma_Pago_Beans implements Serializable {
                 ", Proveedor='" + Proveedor + '\'' +
                 ", Expiracion=" + Expiracion +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Forma_Pago_Beans that = (Forma_Pago_Beans) o;
+
+        if (ID_Forma_Pago != that.ID_Forma_Pago) return false;
+        if (FK_Cliente_FP != null ? !FK_Cliente_FP.equals(that.FK_Cliente_FP) : that.FK_Cliente_FP != null) return false;
+        if (Tipo_Pago != null ? !Tipo_Pago.equals(that.Tipo_Pago) : that.Tipo_Pago != null) return false;
+        if (Proveedor != null ? !Proveedor.equals(that.Proveedor) : that.Proveedor != null) return false;
+        if (Num_Cuenta != null ? !Num_Cuenta.equals(that.Num_Cuenta) : that.Num_Cuenta != null) return false;
+        if (Expiracion != null ? !Expiracion.equals(that.Expiracion) : that.Expiracion != null) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID_Forma_Pago;
+        result = 31 * result + (FK_Cliente_FP != null ? FK_Cliente_FP.hashCode() : 0);
+        result = 31 * result + (Tipo_Pago != null ? Tipo_Pago.hashCode() : 0);
+        result = 31 * result + (Proveedor != null ? Proveedor.hashCode() : 0);
+        result = 31 * result + (Num_Cuenta != null ? Num_Cuenta.hashCode() : 0);
+        result = 31 * result + (Expiracion != null ? Expiracion.hashCode() : 0);
+        return result;
     }
 }

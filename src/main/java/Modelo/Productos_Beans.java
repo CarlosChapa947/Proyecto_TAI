@@ -5,11 +5,34 @@ import Datos.Productos_DAO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "\"Productos\"", schema = "\"Proyecto\"", catalog = "Ecommerce")
 public class Productos_Beans implements Serializable {
-    private int ID_Productos, FK_Categoria;
+    @Basic
+    @Id
+    @Column(name = "\"ID_Productos\"", nullable = false)
+    private int ID_Productos;
+
+    @Basic
+    @Column(name = "\"Categoria\"", nullable = false)
+    private int FK_Categoria;
+
+    @Basic
+    @Column(name = "\"Nombre\"", nullable = false)
+    private String Nombre;
+    @Basic
+    @Column(name = "\"Precio_Unitario\"", nullable = true)
     private double Precio_Unitario;
-    private String Nombre, Descripcion, img;
+
+    @Basic
+    @Column(name = "\"Descripcion\"", nullable = true)
+    private String Descripcion;
+
+    @Basic
+    @Column(name = "\"Image_Name\"", nullable = true)
+    private String img;
 
     public Productos_Beans() {
 
@@ -108,5 +131,36 @@ public class Productos_Beans implements Serializable {
         sb.append(", img='").append(img).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Productos_Beans that = (Productos_Beans) o;
+
+        if (ID_Productos != that.ID_Productos) return false;
+        if (Double.compare(that.Precio_Unitario, Precio_Unitario) != 0) return false;
+        if (FK_Categoria != that.FK_Categoria) return false;
+        if (Nombre != null ? !Nombre.equals(that.Nombre) : that.Nombre != null) return false;
+        if (Descripcion != null ? !Descripcion.equals(that.Descripcion) : that.Descripcion != null) return false;
+        if (img != null ? !img.equals(that.img) : that.img != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = ID_Productos;
+        temp = Double.doubleToLongBits(Precio_Unitario);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + FK_Categoria;
+        result = 31 * result + (Nombre != null ? Nombre.hashCode() : 0);
+        result = 31 * result + (Descripcion != null ? Descripcion.hashCode() : 0);
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        return result;
     }
 }

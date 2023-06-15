@@ -25,7 +25,7 @@ public class  HibernateUtil {
     static {
         try {
             Configuration configuration = new Configuration();
-            configuration.configure(new File("C:\\Users\\cec19\\Downloads\\Proyecto_TAI\\src\\main\\java\\hibernate.cfg.xml"));
+            configuration.configure(new File(".\\src\\main\\java\\hibernate.cfg.xml"));
 
             /*StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

@@ -205,3 +205,10 @@
 0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:32:58 -0600] "GET /CEEC_ProyectoF_DAW HTTP/1.1" 302 - http-bio-8080-exec-1 0
 0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:32:59 -0600] "GET /CEEC_ProyectoF_DAW/ HTTP/1.1" 200 3569 http-bio-8080-exec-2 373
 0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:33:02 -0600] "GET /CEEC_ProyectoF_DAW/Categoria?1 HTTP/1.1" 200 6252 http-bio-8080-exec-3 648
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:20 -0600] "GET /CEEC_ProyectoF_DAW HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:20 -0600] "GET /CEEC_ProyectoF_DAW/ HTTP/1.1" 200 3569 http-bio-8080-exec-2 326
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:24 -0600] "GET /CEEC_ProyectoF_DAW/Categoria?1 HTTP/1.1" 200 6252 http-bio-8080-exec-3 591
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:26 -0600] "GET /CEEC_ProyectoF_DAW/Login HTTP/1.1" 200 1696 http-bio-8080-exec-4 79
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:37 -0600] "POST /CEEC_ProyectoF_DAW/LoginUser HTTP/1.1" 302 - http-bio-8080-exec-6 126
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:37 -0600] "GET /CEEC_ProyectoF_DAW/index.jsp HTTP/1.1" 200 3943 http-bio-8080-exec-7 55
+0:0:0:0:0:0:0:1 - - [14/Jun/2023:21:39:41 -0600] "GET /CEEC_ProyectoF_DAW/Logout HTTP/1.1" 200 3569 http-bio-8080-exec-9 68

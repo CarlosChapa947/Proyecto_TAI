@@ -2,6 +2,7 @@ package Datos;
 
 
 import Modelo.Carrito_Cliente_Productos_Beans;
+import org.hibernate.Session;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -67,6 +68,16 @@ public class Carrito_Cliente_Productos_DAO {
         PStatement.setInt(3, ID_Producto);
         PStatement.setInt(4, ID_Detalle);
         PStatement.executeUpdate();
+    }
+
+    public void HibernateUpdateCarritoProducto(Carrito_Cliente_Productos_Beans orden, int Cantidad){
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Carrito_Cliente_Productos_Beans nuevaOrden = session.get(Carrito_Cliente_Productos_Beans.class, orden);
+        nuevaOrden.setCantidad(nuevaOrden.getCantidad() + Cantidad);
+        session.update(nuevaOrden);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void updateCarritoProducto(Carrito_Cliente_Productos_Beans orden) throws SQLException {

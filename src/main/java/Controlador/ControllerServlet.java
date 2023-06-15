@@ -154,8 +154,8 @@ public class ControllerServlet extends HttpServlet {
                     producto = productosDao.getProducto(ID_Producto);
                     productInCar = productosCarritoDao.searchProducto(carritoCliente.getID_Carrito(), ID_Producto, ID_Detalle);
                     if(productInCar != null){
-                        productInCar.setCantidad(productInCar.getCantidad() + Cantidad);
-                        productosCarritoDao.updateCarritoProducto(productInCar);
+                        //productInCar.setCantidad(productInCar.getCantidad() + Cantidad);
+                        productosCarritoDao.HibernateUpdateCarritoProducto(productInCar, Cantidad);
                     } else {
                         productInCar = new Carrito_Cliente_Productos_Beans(ID_Producto, carritoCliente.getID_Carrito(),Cantidad, ID_Detalle, producto.getPrecio_Unitario());
                         productosCarritoDao.insertCarritoProducto(productInCar);

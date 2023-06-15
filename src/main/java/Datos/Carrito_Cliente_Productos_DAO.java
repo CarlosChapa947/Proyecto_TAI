@@ -33,6 +33,18 @@ public class Carrito_Cliente_Productos_DAO {
         PStatement.executeUpdate();
     }
 
+    public Carrito_Cliente_Productos_Beans HibernateDeleteCarritoProducto(Carrito_Cliente_Productos_Beans orden){
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Carrito_Cliente_Productos_Beans nuevaOrden = session.get(Carrito_Cliente_Productos_Beans.class, orden);
+        if(nuevaOrden != null){
+            session.delete(nuevaOrden);
+        }
+        session.getTransaction().commit();
+        session.close();
+        return nuevaOrden;
+    }
+
     public Carrito_Cliente_Productos_Beans DeleteCarritoProducto(int ID_Carrito, int ID_Producto, int ID_Detalle) throws SQLException {
         Carrito_Cliente_Productos_Beans temp=null;
         String statement = "DELETE FROM \"Proyecto\".\"Carrito_Cliente_Productos\" WHERE \"Carrito_Cliente_ID_Carrito\" = ? AND " +
@@ -74,7 +86,7 @@ public class Carrito_Cliente_Productos_DAO {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
         Carrito_Cliente_Productos_Beans nuevaOrden = session.get(Carrito_Cliente_Productos_Beans.class, orden);
-        nuevaOrden.setCantidad(nuevaOrden.getCantidad() + Cantidad);
+        nuevaOrden.setCantidad(Cantidad);
         session.update(nuevaOrden);
         session.getTransaction().commit();
         session.close();

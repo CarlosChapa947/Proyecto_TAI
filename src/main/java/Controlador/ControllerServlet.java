@@ -170,7 +170,7 @@ public class ControllerServlet extends HttpServlet {
             }
             case "/updateCart":{
                 HttpSession session = request.getSession();
-                Carrito_Cliente_Productos_Beans carritoProducto;
+                Carrito_Cliente_Productos_Beans carritoProducto = new Carrito_Cliente_Productos_Beans();
                 Carrito_Cliente_Productos_DAO carritoDAO;
                 Carrito_Cliente_Beans carritoCliente = (Carrito_Cliente_Beans) session.getAttribute("currentCart");
                 int ID_Producto = Integer.parseInt(request.getParameter("productId"));
@@ -178,10 +178,11 @@ public class ControllerServlet extends HttpServlet {
                 int ID_Detalle = Integer.parseInt(request.getParameter("Detalle_Producto"));
                 try {
                     carritoDAO = new Carrito_Cliente_Productos_DAO();
+                    carritoProducto = carritoDAO.searchProducto(carritoCliente.getID_Carrito(), ID_Producto, ID_Detalle);
                     if(cantidad <= 0){
-                        carritoDAO.DeleteCarritoProducto(carritoCliente.getID_Carrito(), ID_Producto, ID_Detalle);
+                        carritoDAO.HibernateDeleteCarritoProducto(carritoProducto);
                     } else {
-                        carritoDAO.updateCarritoCantidad(carritoCliente.getID_Carrito(), ID_Producto, cantidad, ID_Detalle);
+                        carritoDAO.HibernateUpdateCarritoProducto(carritoProducto, cantidad);
                     }
                     //user_path = "/viewCart";
                    // url = user_path ;
